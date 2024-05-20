@@ -1,7 +1,7 @@
 provider "aws" {
   region     = "us-east-1"
-  access_key = "AKIA47CR2PIOAETCHCJ5"
-  secret_key = "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"
+  access_key = ""
+  secret_key = ""
 }
 # Create a VPC
 resource "aws_vpc" "TeeVPC" {
@@ -37,9 +37,9 @@ resource "aws_subnet" "Tee-Public_Subnets2" {
   }
 }
 resource "aws_subnet" "Tee-Private_Subnets1" {
-  vpc_id                  = aws_vpc.TeeVPC.id
-  cidr_block              = "10.14.10.0/24"
-  availability_zone       = "us-east-1b"
+  vpc_id            = aws_vpc.TeeVPC.id
+  cidr_block        = "10.14.10.0/24"
+  availability_zone = "us-east-1b"
 
   tags = {
     Name      = "Tee-pri-1"
@@ -47,9 +47,9 @@ resource "aws_subnet" "Tee-Private_Subnets1" {
   }
 }
 resource "aws_subnet" "Tee-Private_Subnets2" {
-  vpc_id                  = aws_vpc.TeeVPC.id
-  cidr_block              = "10.14.11.0/24"
-  availability_zone       = "us-east-1c"
+  vpc_id            = aws_vpc.TeeVPC.id
+  cidr_block        = "10.14.11.0/24"
+  availability_zone = "us-east-1c"
 
   tags = {
     Name      = "Tee-pri-2"
@@ -89,7 +89,7 @@ resource "aws_route_table_association" "tee-rtb-ass-b" {
 }
 
 resource "aws_security_group" "sg69" {
- vpc_id      = aws_vpc.TeeVPC.id
+  vpc_id = aws_vpc.TeeVPC.id
 
   ingress {
     from_port   = "22"
@@ -102,7 +102,7 @@ resource "aws_security_group" "sg69" {
 
 resource "aws_network_interface" "Tee-Server-if" {
   subnet_id       = aws_subnet.Tee-Public_Subnets2.id
-  security_groups = ["sg-000c30b1de5b2de45",aws_security_group.sg69.id]
+  security_groups = ["sg-000c30b1de5b2de45", aws_security_group.sg69.id]
 
   tags = {
     Name      = "Primary-ENI-69"
