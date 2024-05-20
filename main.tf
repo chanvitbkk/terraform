@@ -1,7 +1,7 @@
 provider "aws" {
   region     = "us-east-1"
-  access_key = ""
-  secret_key = ""
+  access_key = "AKIA47CR2PIOAETCHCJ5"
+  secret_key = "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"
 }
 # Create a VPC
 resource "aws_vpc" "TeeVPC" {
